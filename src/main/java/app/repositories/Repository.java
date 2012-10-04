@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-public abstract class Repository<T, I extends Serializable> {
+public abstract class Repository<T extends Serializable> {
 	
 	protected final EntityManager entityManager;
 	protected final Class<T> clazz;
@@ -33,7 +33,7 @@ public abstract class Repository<T, I extends Serializable> {
 		entityManager.remove(entity);
 	}
 	
-	public T find(I id) {
+	public T find(T id) {
 		return entityManager.find(clazz, id);
 	}
 	
