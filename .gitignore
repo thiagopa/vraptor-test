@@ -1,2 +1,7 @@
 src/main/webapp/WEB-INF/classes
 target
+*.class
+*.jar
+*.war
+*.ear
+
