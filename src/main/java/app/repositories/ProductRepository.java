@@ -3,11 +3,12 @@ package app.repositories;
 import javax.persistence.EntityManager;
 
 import app.models.Product;
+import br.com.caelum.vraptor.ioc.Component;
 
-@org.springframework.stereotype.Repository
+@Component
 public class ProductRepository extends Repository<Product> {
 
-	protected ProductRepository(EntityManager entityManager) {
+	public ProductRepository(EntityManager entityManager) {
 		super(entityManager);
 		// TODO Auto-generated constructor stub
 	}
