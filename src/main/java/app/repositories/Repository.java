@@ -33,7 +33,7 @@ public abstract class Repository<T extends Serializable> {
 		entityManager.remove(entity);
 	}
 	
-	public T find(T id) {
+	public T find(Long id) {
 		return entityManager.find(clazz, id);
 	}
 	

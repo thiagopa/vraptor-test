@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import app.models.Product;
 import app.repositories.ProductRepository;
+import br.com.caelum.vraptor.Delete;
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -21,6 +26,7 @@ public class ProductController {
 	@Autowired
 	private Validator validator;
 	
+	@Get @Path("/products")
 	public List<Product> list() {
 		return getProductRepository().findAll();
 	}
@@ -29,6 +35,7 @@ public class ProductController {
 	public void form() {
 	}
 	
+	@Post("/products/{product.id}")
 	public void add(final Product product) {
 		
 		getValidator().checking(new Validations(){ {
@@ -43,6 +50,21 @@ public class ProductController {
 		getResult().redirectTo(ProductController.class).list();
 	}
 
+	@Get("/products/{product.id}")
+	public Product view(Product product) {
+		return getProductRepository().find(product.getId());
+	}
+	
+	@Put("/products/{product.id}")
+	public void update(Product product) {
+		getProductRepository().update(product);
+	}
+	
+	@Delete("/products/{product.id}")
+	public void remove(Product product) {
+		getProductRepository().destroy(product);
+	}
+	
 	// -- getters and setters
 	
 	public ProductRepository getProductRepository() {
